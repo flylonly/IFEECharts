@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Echarts-折线图和柱状图</title>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/3.4.0/echarts.min.js"></script>
+    <script>
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: '群成员分布'
+                
+            },
+            tooltip: { trigger: 'axis'},
+            toolbox: {
+            show: true,
+            feature: {                    
+                    magicType: {type: ['line', 'bar']}                   
+                }
+            },
+            legend: {
+                data:['人员比例','人数']
+            },
+            xAxis: [
+                {
+                    data: ["男","城市","90后","单身"]
+                }
+                
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                    scale: true,
+                    name: '百分比',
+                    max: 100,
+                    min: 0,
+                    boundaryGap: [0.2, 0.2],
+                    axisLabel: {
+                        formatter: '{value} %'
+                    }
+                },
+                {
+                    type: 'value',
+                    scale: true,
+                    name: '人数',
+                    splitNumber:5,
+                    max: 500,
+                    min: 0,
+                    boundaryGap: [0.2, 0.2]
+                }
+                 
+            ],
+            series: [{
+                name: '人员比例',
+                type: 'bar',
+                xAxisIndex: 0,
+                yAxisIndex: 0,
+                data: [65, 22, 42,33]
+            },{
+                name: '人数',
+                type: 'line',
+                xAxisIndex: 0,
+                yAxisIndex: 1,
+                data: [244,84,157,125]
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>
